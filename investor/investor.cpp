@@ -19,6 +19,7 @@ namespace Investor
 			throw std::runtime_error("Wrong type provided");
 		}
 		available_funds = 0.0;
+		stocks.reserve(MIN_EXPECTED_STOCKS);
 	}
 
 	void Wallet::add_stock(Stock new_stock)

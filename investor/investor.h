@@ -19,6 +19,7 @@ namespace Investor
 		std::string type;
 		std::vector<Stock> stocks;
 		double available_funds;
+		static const int MIN_EXPECTED_STOCKS = 20;
 	public:
 		void deposit_funds(double deposit);
 		void withdraw_funds(double withdraw);

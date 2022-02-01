@@ -18,6 +18,7 @@ namespace Market
 	{
 		company_name = in_name;
 		current_price = 0.0;
+		positions.reserve(MIN_EXPECTED_POSITIONS);
 
 		std::ios_base::fmtflags orig = std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
 		std::streamsize prec = std::cout.precision(3);

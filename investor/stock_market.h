@@ -22,6 +22,7 @@ namespace Market
 		std::string company_name;
 		double current_price;
 		std::vector<Position> positions;
+		static const int MIN_EXPECTED_POSITIONS = 5;
 	public:
 		std::string get_name() const;
 		void set_price(double price) ;
