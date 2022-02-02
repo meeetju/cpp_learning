@@ -18,37 +18,58 @@ namespace Investor
 		default:
 			throw std::runtime_error("Wrong type provided");
 		}
-		available_funds = 0.0;
 		stocks.reserve(MIN_EXPECTED_STOCKS);
+		available_funds = 0.0;
+		
+	}
+
+	void Wallet::deposit_funds(double deposit)
+	{
+		if (deposit > 0.0)
+		{
+			available_funds += deposit;
+		}
+		else
+		{
+			std::cout << "Deposit must be greather than 0.0!\n";
+		}
+		
+	}
+
+	void Wallet::withdraw_funds(double withdraw)
+	{
+		if (withdraw <= available_funds)
+		{
+			available_funds -= withdraw;
+		}
+		else
+		{
+			std::cout << "Insufficient funds!\n";
+		}
+		
 	}
 
 	void Wallet::add_stock(Stock new_stock)
 	{
-		stocks.push_back(new_stock);
+		if (find(stocks.begin(), stocks.end(), new_stock) == stocks.end())
+		{
+			stocks.push_back(new_stock);
+		}
+		else
+		{
+			std::cout << "Stock already exists!\n";
+		}
 	}
 
 	void Wallet::remove_stock(Stock stock)
 	{
-		//std::remove(stocks.begin(), stocks.end(), stock);
-		//stocks.erase(std::remove(stocks.begin(), stocks.end(), stock), stocks.end());
-
-		int position = 0;
-
-		for (int i = 0; i < stocks.size(); i++)
-		{
-			if (stocks[i] == stock)
-			{
-				position = i;
-			}
-		}
-
-		stocks.erase(stocks.begin() + position);
+		stocks.erase(std::remove(stocks.begin(), stocks.end(), stock), stocks.end());
 	}
 
 	void Wallet::get_ballance() const
 	{
 		std::cout << "\n********** Content of the " << type << " **********" << std::endl;
-		std::cout << std::endl;
+		std::cout << "Available funds: " << available_funds << std::endl;
 
 		for (int i = 0; i < int(stocks.size()); i++)
 		{

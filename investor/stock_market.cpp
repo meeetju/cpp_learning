@@ -6,7 +6,7 @@ namespace Market
 	Position::Position(int number, double price)
 	{
 		if (price <= 0.0)
-			throw std::runtime_error("Incorrect price! Cannot buy!");
+			throw std::runtime_error("Incorrect price! Cannot buy!\n");
 		else
 		{
 			number_of_shares = number;

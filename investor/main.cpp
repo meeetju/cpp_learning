@@ -28,10 +28,11 @@ int main()
     standard.add_stock(intel);
     standard.add_stock(tesla);
     standard.add_stock(netflix);
+    standard.add_stock(tesla);
 
     standard.get_ballance();
 
-    standard.remove_stock(intel);
+    standard.remove_stock(tesla);
 
     standard.get_ballance();
 }
