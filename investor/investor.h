@@ -20,11 +20,13 @@ namespace Investor
 		std::vector<Stock*> stocks;
 		double available_funds;
 		static const int MIN_EXPECTED_STOCKS = 20;
+		bool is_stock_in_wallet(Stock* stock);
+		bool is_enough_funds(Stock* stock, int number_of_shares) const;
 	public:
 		void deposit_funds(double deposit);
 		void withdraw_funds(double withdraw);
-		void add_stock(Stock* stock);
-		void remove_stock(Stock* stock);
+		void buy_stock(Stock* stock, int number_of_shares);
+		void sell_stock(Stock* stock, int number_of_shares);
 		void get_ballance() const;
 		Wallet(wallet_type in_type);
 		~Wallet() {};

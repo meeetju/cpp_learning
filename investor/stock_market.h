@@ -24,12 +24,14 @@ namespace Market
 		std::vector<Position> positions;
 		static const int MIN_EXPECTED_POSITIONS = 5;
 		//bool is_empty_position(Position position);
+		void remove_shares_from_positions(int shares_to_remove);
 		void remove_empty_positions();
 	public:
 		std::string get_name() const;
+		double get_current_price() const { return current_price; };
 		void set_price(double price) ;
-		void buy(int number_of_shares);
-		void sell(int number_of_shares);
+		void add_shares(int number_of_shares);
+		void remove_shares(int number_of_shares);
 		void get_ballance() const;
 		Stock(const std::string& in_name);
 		~Stock() {};

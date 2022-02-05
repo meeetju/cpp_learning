@@ -49,22 +49,48 @@ namespace Investor
 		
 	}
 
-	void Wallet::add_stock(Stock* new_stock)
+	void Wallet::buy_stock(Stock* stock, int number_of_shares)
 	{
-		if (find(stocks.begin(), stocks.end(), new_stock) == stocks.end())
+		std::cout << "Buying " << number_of_shares << " of " << stock->get_name() << std::endl;
+
+		if (is_enough_funds(stock, number_of_shares))
 		{
-			stocks.push_back(new_stock);
-			std::cout << "Adding " << new_stock->get_name() <<" under address: " << new_stock << " to stocks" << std::endl;
+			if (!is_stock_in_wallet(stock))
+			{
+				stocks.push_back(stock);
+				std::cout << "Adding " << stock->get_name() << " with address: " << stock << " to stocks" << std::endl;
+			}
+			stock->add_shares(number_of_shares);
 		}
 		else
 		{
-			std::cout << "Stock already exists!\n";
+			std::cout << "The are not enough funds in the wallet!\n";
 		}
 	}
 
-	void Wallet::remove_stock(Stock* stock)
+	void Wallet::sell_stock(Stock* stock, int number_of_shares)
 	{
-		stocks.erase(std::remove(stocks.begin(), stocks.end(), stock), stocks.end());
+		std::cout << "Sell " << number_of_shares << " of " << stock->get_name() << std::endl;
+
+		if (is_stock_in_wallet(stock))
+		{
+			stock->remove_shares(number_of_shares);
+			std::cout << "Sold " << stock->get_name() << " shares for " << stock->get_current_price() << " each" << std::endl;
+		}
+		else
+		{
+			std::cout << "There is no " << stock->get_name() << " in the wallet!\n";
+		}
+	}
+
+	bool Wallet::is_stock_in_wallet(Stock* stock)
+	{
+		return find(stocks.begin(), stocks.end(), stock) != stocks.end();
+	}
+
+	bool Wallet::is_enough_funds(Stock* stock, int number_of_shares) const
+	{
+		return bool (available_funds >= (stock->get_current_price() * number_of_shares));
 	}
 
 	void Wallet::get_ballance() const
@@ -78,7 +104,7 @@ namespace Investor
 			stocks[i]->get_ballance();
 		}
 
-		std::cout << "================== WALLET END ====================\n\n\n";
+		std::cout << "=================== WALLET END =====================\n\n\n";
 	}
 }
 
