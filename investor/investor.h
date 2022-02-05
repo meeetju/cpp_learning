@@ -17,14 +17,14 @@ namespace Investor
 	{
 	private:
 		std::string type;
-		std::vector<Stock> stocks;
+		std::vector<Stock*> stocks;
 		double available_funds;
 		static const int MIN_EXPECTED_STOCKS = 20;
 	public:
 		void deposit_funds(double deposit);
 		void withdraw_funds(double withdraw);
-		void add_stock(Stock stock);
-		void remove_stock(Stock stock);
+		void add_stock(Stock* stock);
+		void remove_stock(Stock* stock);
 		void get_ballance() const;
 		Wallet(wallet_type in_type);
 		~Wallet() {};

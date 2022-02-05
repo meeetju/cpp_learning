@@ -23,6 +23,8 @@ namespace Market
 		double current_price;
 		std::vector<Position> positions;
 		static const int MIN_EXPECTED_POSITIONS = 5;
+		//bool is_empty_position(Position position);
+		void remove_empty_positions();
 	public:
 		std::string get_name() const;
 		void set_price(double price) ;

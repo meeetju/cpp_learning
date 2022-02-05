@@ -25,15 +25,25 @@ int main()
 
     Wallet standard(wallet_type::STANDARD);
 
-    standard.add_stock(intel);
-    standard.add_stock(tesla);
-    standard.add_stock(netflix);
-    standard.add_stock(tesla);
+    standard.add_stock(&intel);
+    standard.add_stock(&tesla);
+    standard.add_stock(&netflix);
+    standard.add_stock(&tesla);
 
     standard.get_ballance();
 
-    standard.remove_stock(tesla);
+    standard.remove_stock(&tesla);
 
     standard.get_ballance();
+
+    intel.sell(5);
+    standard.get_ballance();
+
+    intel.sell(20);
+    standard.get_ballance();
+
+    intel.sell(5);
+    standard.get_ballance();
+
 }
 

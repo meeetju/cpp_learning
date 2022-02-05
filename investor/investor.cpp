@@ -49,11 +49,12 @@ namespace Investor
 		
 	}
 
-	void Wallet::add_stock(Stock new_stock)
+	void Wallet::add_stock(Stock* new_stock)
 	{
 		if (find(stocks.begin(), stocks.end(), new_stock) == stocks.end())
 		{
 			stocks.push_back(new_stock);
+			std::cout << "Adding " << new_stock->get_name() <<" under address: " << new_stock << " to stocks" << std::endl;
 		}
 		else
 		{
@@ -61,20 +62,23 @@ namespace Investor
 		}
 	}
 
-	void Wallet::remove_stock(Stock stock)
+	void Wallet::remove_stock(Stock* stock)
 	{
 		stocks.erase(std::remove(stocks.begin(), stocks.end(), stock), stocks.end());
 	}
 
 	void Wallet::get_ballance() const
 	{
-		std::cout << "\n********** Content of the " << type << " **********" << std::endl;
+		std::cout << "\n\n================== WALLET START ====================\n";
+		std::cout << "Content of the " << type << std::endl;
 		std::cout << "Available funds: " << available_funds << std::endl;
 
 		for (int i = 0; i < int(stocks.size()); i++)
 		{
-			stocks[i].get_ballance();
+			stocks[i]->get_ballance();
 		}
+
+		std::cout << "================== WALLET END ====================\n\n\n";
 	}
 }
 
